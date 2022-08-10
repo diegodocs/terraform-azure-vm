@@ -343,7 +343,7 @@ $ docker run --rm azure-compute /bin/bash -c "bundle install && rake full"
 
 ## Authors
 
-Originally created by [David Tesar](http://github.com/dtzar)
+Originally created on Terraform Registry https://registry.terraform.io/modules/Azure/compute/azurerm/latest
 
 ## License
 
