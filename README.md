@@ -13,7 +13,6 @@ This Terraform module deploys Virtual Machines in Azure with the following chara
 
 ## Usage example in Terraform 0.14
 
-## Usage in Terraform 0.13
 ```hcl
 module "deploy_starapp" {
     
