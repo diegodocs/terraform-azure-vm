@@ -8,7 +8,8 @@ This Terraform module deploys Virtual Machines in Azure with the following chara
 - All VMs use [managed disks](https://azure.microsoft.com/services/managed-disks/)
 - VM nics attached to a single virtual network subnet of your choice (existing) via `var.vnet_name` and `var.subnet_name`.
 
-## Outputs:
+## Outputs
+
 - vm_ids = Array of Virtual machine ids created.
 
 ## Usage example in Terraform 0.14
