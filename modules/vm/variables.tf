@@ -1,24 +1,24 @@
 variable "business_product_name" {
-  type     = string  
+  type = string
 }
 
 variable "resource_location" {
-  type     = string
+  type    = string
   default = "eastus2"
 }
 
 variable "vm_admin_username" {
-  type     = string   
-  default = "adminuser" 
+  type    = string
+  default = "adminuser"
 }
 
 variable "vm_admin_password" {
-  type     = string   
-  default = "P@$s0rd001!" 
+  type    = string
+  default = "P@$s0rd001!"
 }
 
 variable "vm_count" {
-  default  = 1
+  default = 1
 }
 
 variable "vm_publisher" {
@@ -38,37 +38,37 @@ variable "vm_version" {
 }
 
 variable "vm_size" {
-  type = string  
+  type = string
 }
 
-variable "vm_disk_data_size_gb"{
+variable "vm_disk_data_size_gb" {
   default = 30
 }
 
 variable "vnet_resource_group_name" {
-  type     = string
+  type = string
 }
 
 variable "vnet_name" {
-  type     = string
+  type = string
 }
 
 variable "subnet_name" {
-  type     = string
+  type = string
 }
 
 variable "owner" {
-  type     = string
+  type = string
 }
 
 variable "costcenter" {
-  type     = string
+  type = string
 }
 
 variable "monitoring" {
-  type     = string
+  type = string
 }
 
 variable "env" {
-  type     = string
+  type = string
 }
