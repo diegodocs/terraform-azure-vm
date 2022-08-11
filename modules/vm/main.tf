@@ -1,13 +1,13 @@
 locals {
   app_name = "${var.env}-${var.business_product_name}-${var.suffix}"
   tags = {
-    "generated-by" = "github-actions|terraform"
-    "build-version"= "1.0.0.0"
-    "build-timestamp"= timestamp()
-    "owner"        = var.owner
-    "costcenter"   = var.costcenter
-    "monitoring"   = var.monitoring
-    "env"          = var.env
+    "generated-by"    = "github-actions|terraform"
+    "build-version"   = "1.0.0.0"
+    "build-timestamp" = timestamp()
+    "owner"           = var.owner
+    "costcenter"      = var.costcenter
+    "monitoring"      = var.monitoring
+    "env"             = var.env
   }
 }
 
