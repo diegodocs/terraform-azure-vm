@@ -2,6 +2,10 @@ variable "business_product_name" {
   type = string
 }
 
+variable "suffix" {
+  type = string
+}
+
 variable "resource_location" {
   type    = string
   default = "eastus2"

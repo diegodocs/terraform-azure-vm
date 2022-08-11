@@ -1,5 +1,5 @@
 locals {
-  app_name = "${var.env}-${var.business_product_name}-001"
+  app_name = "${var.env}-${var.business_product_name}-${var.suffix}"
 }
 
 data "azurerm_virtual_network" "vnet" {
@@ -35,7 +35,7 @@ resource "azurerm_network_interface" "nic" {
   ip_configuration {
     name                          = "${local.app_name}-vm-nic-config"
     subnet_id                     = data.azurerm_subnet.subnet.id
-    private_ip_address_allocation = "dynamic"
+    private_ip_address_allocation = "Dynamic"
   }
 }
 

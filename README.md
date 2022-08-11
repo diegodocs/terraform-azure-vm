@@ -31,7 +31,7 @@ module "deploy_starapp" {
     vm_size                     = "Standard_B1s"
     vm_publisher                = "MicrosoftWindowsServer"
     vm_offer                    = "WindowsServer"
-    vm_sku                      = "2019-Datacenter"
+    vm_sku                      = "2022-Datacenter"
     vm_version                  = "latest"        
 
     #GOVERNANCE

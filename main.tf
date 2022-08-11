@@ -1,4 +1,4 @@
-module "deploy_starapp" {
+module "deploy_starapp_001" {
 
   source = "./modules/vm"
 
@@ -14,7 +14,7 @@ module "deploy_starapp" {
   vm_size      = "Standard_B1s"
   vm_publisher = "MicrosoftWindowsServer"
   vm_offer     = "WindowsServer"
-  vm_sku       = "2019-Datacenter"
+  vm_sku       = "2022-Datacenter"
   vm_version   = "latest"
 
   #GOVERNANCE
@@ -22,5 +22,5 @@ module "deploy_starapp" {
   costcenter = "123456-001"
   monitoring = true
   env        = "dev"
-
+  suffix     = "001"
 }
