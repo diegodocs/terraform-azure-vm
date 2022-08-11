@@ -17,13 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
  
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
  
     steps:
-    # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
  
@@ -55,14 +53,6 @@ jobs:
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./terraform"
         
-    - name: Checkov GitHub Action
-      # You may pin to the exact commit or the version.
-      # uses: bridgecrewio/checkov-action@99bb2caf247dfd9f03cf984373bc6043d4e32ebf
-      uses: bridgecrewio/checkov-action@v12.1347.0
-      with:
-        # directory with infrastructure code to scan
-        directory: .
- 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
       uses: hashicorp/terraform-github-actions@master
