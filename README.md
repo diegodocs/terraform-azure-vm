@@ -1,3 +1,5 @@
+[![Terraform - Plan and Apply](https://github.com/diegodocs/terraform-azure-vm/actions/workflows/terraform-apply.yml/badge.svg)](https://github.com/diegodocs/terraform-azure-vm/actions/workflows/terraform-apply.yml)
+
 # Module Terraform-Azure-Vm
 
 ## Deploys 1+ Virtual Machines to your provided VNet
