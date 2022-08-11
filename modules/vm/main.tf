@@ -1,5 +1,14 @@
 locals {
   app_name = "${var.env}-${var.business_product_name}-${var.suffix}"
+  tags = {
+    "generated-by" = "github-actions|terraform"
+    "build-version"= "1.0.0.0"
+    "build-timestamp"= timestamp()
+    "owner"        = var.owner
+    "costcenter"   = var.costcenter
+    "monitoring"   = var.monitoring
+    "env"          = var.env
+  }
 }
 
 data "azurerm_virtual_network" "vnet" {
@@ -17,13 +26,7 @@ resource "azurerm_resource_group" "main" {
   name     = "${local.app_name}-rg"
   location = var.resource_location
 
-  tags = {
-    "generated-by" = "github-actions|terraform"
-    "owner"        = var.owner
-    "costcenter"   = var.costcenter
-    "monitoring"   = var.monitoring
-    "env"          = var.env
-  }
+  tags = local.tags
 }
 
 resource "azurerm_network_interface" "nic" {
@@ -37,6 +40,10 @@ resource "azurerm_network_interface" "nic" {
     subnet_id                     = data.azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
   }
+
+  depends_on = [
+    resource.azurerm_resource_group.main
+  ]
 }
 
 resource "azurerm_virtual_machine" "vm" {
@@ -81,14 +88,7 @@ resource "azurerm_virtual_machine" "vm" {
     enable_automatic_upgrades = true
   }
 
-  tags = {
-    "generated-by" = "github-actions|terraform"
-    "owner"        = var.owner
-    "costcenter"   = var.costcenter
-    "monitoring"   = var.monitoring
-    "env"          = var.env
-    "osinfo"       = "${var.vm_offer}|${var.vm_sku}"
-  }
+  tags = local.tags
 
   depends_on = [
     resource.azurerm_network_interface.nic
