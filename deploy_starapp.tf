@@ -1,20 +1,3 @@
-# Module Terraform-Azure-Vm
-
-## Deploys 1+ Virtual Machines to your provided VNet
-
-This Terraform module deploys Virtual Machines in Azure with the following characteristics:
-
-- Ability to specify a Windows Virtual Machine
-- All VMs use [managed disks](https://azure.microsoft.com/services/managed-disks/)
-- VM nics attached to a single virtual network subnet of your choice (existing) via `var.vnet_name` and `var.subnet_name`.
-
-## Outputs:
-- vm_ids = Array of Virtual machine ids created.
-
-## Usage example in Terraform 0.14
-
-## Usage in Terraform 0.13
-```hcl
 module "deploy_starapp" {
     
     source = "./modules/vm"
@@ -41,4 +24,3 @@ module "deploy_starapp" {
     env                         = "dev"
           
 }
-```

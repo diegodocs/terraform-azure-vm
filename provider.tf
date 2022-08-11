@@ -1,20 +1,16 @@
 terraform {
 
-  required_version = ">=0.12"
-  
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
-      version = "~>2.9"
+      source = "hashicorp/azurerm"      
     }
   }
 
   backend "azurerm" {
-      resource_group_name  = "#{AzureRmResourceGroupName}#"
-      storage_account_name = "#{AzureRmStorageAccountName}#"
-      container_name       = "#{AzureRmContainerName}#"
-      key                  = "#{AzureRmStateFile}#"
-      access_key           = "#{AzureRmAccessKey}#"
+      resource_group_name  = "dev-governance-rg-001"
+      storage_account_name = "sadevtfstate002"
+      container_name       = "tfstate"
+      key                  = "dev-starapp-001.tfsate"      
   }  
 }
 
