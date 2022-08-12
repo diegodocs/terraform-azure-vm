@@ -14,7 +14,7 @@ This Terraform module deploys Virtual Machines in Azure with the following chara
 
 - vm_ids = Array of Virtual machine ids created.
 
-## Usage example in Terraform 0.14
+## Simple usage example of this module
 
 ```hcl
 module "deploy_starapp" {
