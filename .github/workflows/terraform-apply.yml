@@ -56,7 +56,7 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: terraform-module-azure-vm
+        name: terraform-module-azure-vm 1.0.0.${{ github.run_number }}
         path: ./modules/vm
         
     # - name: Terraform Apply
