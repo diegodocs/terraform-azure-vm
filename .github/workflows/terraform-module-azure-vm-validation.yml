@@ -45,6 +45,5 @@ jobs:
    
     - name: Checkov GitHub Action
       uses: bridgecrewio/checkov-action@v12.1347.0
-      with:
-        # directory with infrastructure code to scan
+      with:        
         directory: .

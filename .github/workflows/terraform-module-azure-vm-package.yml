@@ -9,7 +9,7 @@ on:
  
 jobs:
   terraform:
-    name: 'Init, Plan and Package'   
+    name: 'Validate and Package'   
     runs-on: ubuntu-latest    
  
     defaults:
