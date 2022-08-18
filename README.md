@@ -16,31 +16,20 @@ This Terraform module deploys Virtual Machines in Azure with the following chara
 
 ## Usage example
 
-```hcl
-module "deploy_starapp" {
+```yml
+- name: Download artifact    
+    uses: dawidd6/action-download-artifact@v2
+    with:   
+        repo: diegodocs/terraform-module-azure-vm     
+        workflow: terraform-module-azure-vm-package.yml     
+        name: terraform-module-azure-vm-1.0.0.4
+        path: ./modules/vm 
+        github_token: ${{secrets.PRIVATE_REPO_TOKEN}} 
     
-    source = "./modules/vm"
-    
-    #VM        
-    business_product_name       = "starapp"
-    
-    #NETWORK
-    vnet_resource_group_name    = "dev-governance-rg-001"
-    vnet_name                   = "dev-br-vnet-001"
-    subnet_name                 = "dev-br-snet-001"
-    
-    #SIZE                       
-    vm_size                     = "Standard_B1s"
-    vm_publisher                = "MicrosoftWindowsServer"
-    vm_offer                    = "WindowsServer"
-    vm_sku                      = "2022-Datacenter"
-    vm_version                  = "latest"        
-
-    #GOVERNANCE
-    owner                       = "devteam@test.io"
-    costcenter                  = "123456-001"  
-    monitoring                  = true  
-    env                         = "dev"
-          
-}
 ```
+
+## You shouldn't find
+
+- Secrets or sensitive info hardcoded committed to source control.
+- Unnecessary project or library references or third party frameworks.
+- Binaries
