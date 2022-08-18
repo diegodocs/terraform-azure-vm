@@ -1,4 +1,4 @@
-name: 'Terraform - Module - Azure - VM'
+name: 'Terraform-Module-Azure-VM-Package'
  
 on:
   # push:
@@ -9,7 +9,7 @@ on:
  
 jobs:
   terraform:
-    name: 'Terraform-Apply'
+    name: 'Init, Plan and Package'
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
