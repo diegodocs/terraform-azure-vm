@@ -1,4 +1,4 @@
-name: 'Terraform-Module-Azure-VM-Validation'
+name: 'Module-VM-Validation'
  
 on:
   workflow_dispatch:

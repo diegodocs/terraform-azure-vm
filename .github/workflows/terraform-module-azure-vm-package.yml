@@ -1,4 +1,4 @@
-name: 'Terraform-Module-Azure-VM-Package'
+name: 'Module-VM-Package'
  
 on:
   # push:
