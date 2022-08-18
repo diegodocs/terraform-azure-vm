@@ -1,0 +1,35 @@
+name: 'Terraform - Release'
+ 
+on:
+  # push:
+  #   branches:
+  #   - main
+  # pull_request:
+  workflow_dispatch:
+ 
+jobs:
+  terraform:
+    name: 'Terraform Release'
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+    runs-on: ubuntu-latest
+    environment: dev
+ 
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: terraform-module-azure-vm-1.0.0.18
+        path: ./modules/vm
+        
+    - name: Display structure of downloaded files
+      run: tree
+      working-directory: ./
