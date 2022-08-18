@@ -32,7 +32,6 @@ resource "azurerm_resource_group" "main" {
 
 resource "azurerm_network_interface" "nic" {
   name                = "${local.app_name}-vm-nic"
-  count               = var.vm_count
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -47,12 +46,11 @@ resource "azurerm_network_interface" "nic" {
   ]
 }
 
-resource "azurerm_virtual_machine" "vm" {
-  count                            = 1
+resource "azurerm_virtual_machine" "vm" {  
   name                             = "${local.app_name}-vm"
   location                         = azurerm_resource_group.main.location
   resource_group_name              = azurerm_resource_group.main.name
-  network_interface_ids            = ["${element(azurerm_network_interface.nic.*.id, count.index + 1)}"]
+  network_interface_ids            = [azurerm_network_interface.nic.id]
   vm_size                          = var.vm_size
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
@@ -98,7 +96,7 @@ resource "azurerm_virtual_machine" "vm" {
 
 resource "azurerm_virtual_machine_extension" "extension_antimalware" {
   name                       = "${local.app_name}-vm-extension-antimalware"
-  virtual_machine_id         = azurerm_virtual_machine.vm.*.id
+  virtual_machine_id         = azurerm_virtual_machine.vm.id
   publisher                  = "Microsoft.Azure.Security"
   type                       = "IaaSAntimalware"
   type_handler_version       = "2.0"
@@ -151,6 +149,6 @@ resource "azurerm_backup_policy_vm" "vm_backup_policy" {
 resource "azurerm_backup_protected_vm" "vm_protected_backup" {
   resource_group_name = azurerm_resource_group.main.name
   recovery_vault_name = azurerm_recovery_services_vault.vault.name
-  source_vm_id        = azurerm_virtual_machine.vm.*.id
+  source_vm_id        = azurerm_virtual_machine.vm.id
   backup_policy_id    = azurerm_backup_policy_vm.vm_backup_policy.id
 }

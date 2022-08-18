@@ -21,10 +21,6 @@ variable "vm_admin_password" {
   default = "P@$s0rd001!"
 }
 
-variable "vm_count" {
-  default = 1
-}
-
 variable "vm_publisher" {
   type = string
 }
