@@ -29,7 +29,7 @@ jobs:
         tf_actions_subcommand: 'init'
         tf_actions_working_dir: "./terraform"
  
-    - name: Terraform Apply
+    - name: Terraform Destroy
       if: github.ref == 'refs/heads/main'
       uses: hashicorp/terraform-github-actions@master
       with:

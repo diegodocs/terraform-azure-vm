@@ -1,10 +1,11 @@
 name: 'Terraform - Plan and Apply'
  
 on:
-  push:
-    branches:
-    - main
-  pull_request:
+  # push:
+  #   branches:
+  #   - main
+  # pull_request:
+  workflow_dispatch:
  
 jobs:
   terraform:
@@ -52,11 +53,16 @@ jobs:
         tf_actions_version: 1.2.7
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./terraform"
-        
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/main'
-      uses: hashicorp/terraform-github-actions@master
+
+    - uses: actions/upload-artifact@v3
       with:
-        tf_actions_version: 1.2.7
-        tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./terraform"
+        name: terraform-module-azure-vm
+        path: ./modules/vm
+        
+    # - name: Terraform Apply
+    #   if: github.ref == 'refs/heads/main'
+    #   uses: hashicorp/terraform-github-actions@master
+    #   with:
+    #     tf_actions_version: 1.2.7
+    #     tf_actions_subcommand: 'apply'
+    #     tf_actions_working_dir: "./terraform"
