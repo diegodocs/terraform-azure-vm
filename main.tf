@@ -46,7 +46,7 @@ resource "azurerm_network_interface" "nic" {
   ]
 }
 
-resource "azurerm_virtual_machine" "vm" {  
+resource "azurerm_virtual_machine" "vm" {
   name                             = "${local.app_name}-vm"
   location                         = azurerm_resource_group.main.location
   resource_group_name              = azurerm_resource_group.main.name
