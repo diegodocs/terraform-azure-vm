@@ -98,7 +98,7 @@ resource "azurerm_virtual_machine" "vm" {
 
 resource "azurerm_virtual_machine_extension" "extension_antimalware" {
   name                       = "${local.app_name}-vm-extension-antimalware"
-  virtual_machine_id         = azurerm_virtual_machine.vm.id
+  virtual_machine_id         = azurerm_virtual_machine.vm.*.id
   publisher                  = "Microsoft.Azure.Security"
   type                       = "IaaSAntimalware"
   type_handler_version       = "2.0"
@@ -115,8 +115,8 @@ resource "azurerm_recovery_services_vault" "vault" {
 
 resource "azurerm_backup_policy_vm" "vm_backup_policy" {
   name                = "${local.app_name}-vm-backup-policy"
-  resource_group_name = azurerm_resource_group.example.name
-  recovery_vault_name = azurerm_recovery_services_vault.example.name
+  resource_group_name = azurerm_resource_group.main.name
+  recovery_vault_name = azurerm_recovery_services_vault.vault.name
 
   timezone = "UTC"
 
@@ -149,9 +149,8 @@ resource "azurerm_backup_policy_vm" "vm_backup_policy" {
 }
 
 resource "azurerm_backup_protected_vm" "vm_protected_backup" {
-  name                = "${local.app_name}-vm-backup"
   resource_group_name = azurerm_resource_group.main.name
   recovery_vault_name = azurerm_recovery_services_vault.vault.name
-  source_vm_id        = azurerm_virtual_machine.vm.id
+  source_vm_id        = azurerm_virtual_machine.vm.*.id
   backup_policy_id    = azurerm_backup_policy_vm.vm_backup_policy.id
 }
