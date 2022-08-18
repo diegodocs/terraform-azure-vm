@@ -8,6 +8,7 @@ locals {
     "costcenter"      = var.costcenter
     "monitoring"      = var.monitoring
     "env"             = var.env
+    "business_product"= var.business_product_name
   }
 }
 
