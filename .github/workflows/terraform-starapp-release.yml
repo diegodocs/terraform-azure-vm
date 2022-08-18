@@ -39,7 +39,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: terraform-azure-starapp-1.0.0.${{ github.run_number }}
-        path: ./modules/vm
+        path: ./
 
 
   job-release-dev:
@@ -87,7 +87,7 @@ jobs:
 
   job-destroy-dev:
     needs: job-release-dev
-    name: 'Release DEV'
+    name: 'Destroy DEV'
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
