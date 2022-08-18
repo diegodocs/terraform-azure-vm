@@ -1,4 +1,4 @@
-name: 'Terraform - Release - StarApp'
+name: 'StarApp - Release'
  
 on:
   # push:
