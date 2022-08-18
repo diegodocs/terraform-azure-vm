@@ -24,11 +24,13 @@ jobs:
  
     steps:
     - uses: actions/checkout@v2
-
-    - uses: actions/download-artifact@v3
-      with:
-        name: terraform-module-azure-vm-1.0.0.18
-        path: ./modules/vm
+    
+    - name: Download multiple workflow artifacts  
+      uses: marcofaggian/action-download-multiple-artifacts@v3.0.7
+      with:        
+        workflow: terraform-apply.yml        
+        names: terraform-module-azure-vm-1.0.0.18
+        paths: ./modules/vm  
         
     - name: Display structure of downloaded files
       run: tree
