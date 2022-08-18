@@ -1,4 +1,4 @@
-[![Terraform - Plan and Apply](https://github.com/diegodocs/terraform-azure-vm/actions/workflows/terraform-apply.yml/badge.svg)](https://github.com/diegodocs/terraform-azure-vm/actions/workflows/terraform-apply.yml)
+[![Terraform-Module-Azure-VM-Package](https://github.com/diegodocs/terraform-azure-vm/actions/workflows/terraform-module-azure-vm-package.yml/badge.svg)](https://github.com/diegodocs/terraform-azure-vm/actions/workflows/terraform-module-azure-vm-package.yml)
 
 # Module Terraform-Azure-Vm
 
