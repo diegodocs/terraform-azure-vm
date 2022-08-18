@@ -29,7 +29,7 @@ jobs:
       uses: marcofaggian/action-download-multiple-artifacts@v3.0.7
       with:        
         workflow: terraform-module-azure-vm-package.yml        
-        names: terraform-module-azure-vm-1.0.0.19
+        names: terraform-module-azure-vm-1.0.0.1
         paths: ./modules/vm  
         
     - name: Display structure of downloaded files
