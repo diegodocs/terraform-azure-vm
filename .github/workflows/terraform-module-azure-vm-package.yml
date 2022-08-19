@@ -1,10 +1,10 @@
 name: 'Module-VM-Package'
  
 on:
-  # push:
-  #   branches:
-  #   - main
-  # pull_request:
+  pull_request:
+    branches:
+    - main
+  
   workflow_dispatch:
  
 jobs:
@@ -45,10 +45,14 @@ jobs:
     needs: job-validate
     name: 'Package'
     runs-on: ubuntu-latest
-    environment: dev 
+    environment: approval-required
    
     steps:
-    - uses: actions/upload-artifact@v3
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Upload New Artifact Version
+      uses: actions/upload-artifact@v3
       with:
         name: terraform-module-azure-vm-1.0.0.${{ github.run_number }}
         path: ./*.tf
