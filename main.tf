@@ -78,9 +78,9 @@ resource "azurerm_virtual_machine" "vm" {
   }
 
   os_profile {
-    computer_name  = local.app_name
+    computer_name  = "hostname"
     admin_username = var.vm_admin_username
-    admin_password = var.vm_admin_password
+    admin_password = var.vm_admin_password    
   }
 
   os_profile_windows_config {
@@ -92,63 +92,4 @@ resource "azurerm_virtual_machine" "vm" {
   depends_on = [
     resource.azurerm_network_interface.nic
   ]
-}
-
-resource "azurerm_virtual_machine_extension" "extension_antimalware" {
-  name                       = "${local.app_name}-vm-extension-antimalware"
-  virtual_machine_id         = azurerm_virtual_machine.vm.id
-  publisher                  = "Microsoft.Azure.Security"
-  type                       = "IaaSAntimalware"
-  type_handler_version       = "2.0"
-  auto_upgrade_minor_version = true
-}
-
-resource "azurerm_recovery_services_vault" "vault" {
-  name                = "${local.app_name}-vm-backup-kv"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
-  sku                 = "Standard"
-  soft_delete_enabled = true
-}
-
-resource "azurerm_backup_policy_vm" "vm_backup_policy" {
-  name                = "${local.app_name}-vm-backup-policy"
-  resource_group_name = azurerm_resource_group.main.name
-  recovery_vault_name = azurerm_recovery_services_vault.vault.name
-
-  timezone = "UTC"
-
-  backup {
-    frequency = "Daily"
-    time      = "23:00"
-  }
-
-  retention_daily {
-    count = 10
-  }
-
-  retention_weekly {
-    count    = 42
-    weekdays = ["Sunday", "Wednesday", "Friday", "Saturday"]
-  }
-
-  retention_monthly {
-    count    = 7
-    weekdays = ["Sunday", "Wednesday"]
-    weeks    = ["First", "Last"]
-  }
-
-  retention_yearly {
-    count    = 77
-    weekdays = ["Sunday"]
-    weeks    = ["Last"]
-    months   = ["January"]
-  }
-}
-
-resource "azurerm_backup_protected_vm" "vm_protected_backup" {
-  resource_group_name = azurerm_resource_group.main.name
-  recovery_vault_name = azurerm_recovery_services_vault.vault.name
-  source_vm_id        = azurerm_virtual_machine.vm.id
-  backup_policy_id    = azurerm_backup_policy_vm.vm_backup_policy.id
 }
