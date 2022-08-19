@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile {
     computer_name  = "hostname"
     admin_username = var.vm_admin_username
-    admin_password = var.vm_admin_password    
+    admin_password = var.vm_admin_password
   }
 
   os_profile_windows_config {
