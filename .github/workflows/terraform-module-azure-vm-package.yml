@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
  
 jobs:
-  terraform:
-    name: 'Validate and Package'   
+  job-validate:
+    name: 'Validate'   
     runs-on: ubuntu-latest    
  
     defaults:
@@ -41,6 +41,13 @@ jobs:
         tf_actions_subcommand: 'validate'
         tf_actions_working_dir: "./terraform"
 
+  job-package:
+    needs: job-validate
+    name: 'Package'
+    runs-on: ubuntu-latest
+    environment: dev 
+   
+    steps:
     - uses: actions/upload-artifact@v3
       with:
         name: terraform-module-azure-vm-1.0.0.${{ github.run_number }}
